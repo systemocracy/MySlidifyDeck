@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predict Horsepower from MPG with linear model polynomials</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Predict Horsepower from MPG with linear model polynomials">
+  <meta name="author" content="Systemocracy">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Predict Horsepower from MPG with linear model polynomials</h1>
+    <h2>Pitch presentation for coursera</h2>
+    <p>Systemocracy<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This simple shiny application, compares the prediction values for linear models polinomials on 2nd and 4th order. The application could be used for data exploration to check if a higher order polinomial model fits better.</p>
+
+<p>The application will Predict Horsepower from MPG based on said models.</p>
+
+<p>The User Interface will display a slider selector to set the MPG value used for the prediction, and checkboxes to provide the options of showing of hidding actual data set values. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Server Models</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>On the server function we need to create our 2 prediction models:</p>
+
+<pre><code class="r">model1 &lt;- lm(hp ~ mpg + poly(mpg,2), data = mtcars)
+model2 &lt;- lm(hp ~ poly(mpg,4), data = mtcars)
+</code></pre>
+
+<p>The main graph displays the original values from the dataset (in black) and the lines for the predictive models used as well as the values predicted based on an input MPG.</p>
+
+<p>For now, lets set an mpg input value of 20 which will be our default starting point:</p>
+
+<pre><code class="r">mpgInput &lt;- 20
+model1pred &lt;- predict(model1, newdata = data.frame(mpg = mpgInput))
+model2pred &lt;-predict(model2, newdata = data.frame(mpg = mpgInput))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Server Plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>From the models, we generate a plot used for the actual comparison:</p>
+
+<p><img src="figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Conclusion</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This application is very simple, however it allows for a great visual comparison for prediction models.</p>
+
+<p>Skeleton code of the application may be used for similar comparison of other models, with more sopfisticated plots.</p>
+
+<p>Thank you.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Server Models'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Server Plots'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Conclusion'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
